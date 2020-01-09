@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">WeatherApp</string>
+    <string name="random">Random</string>
+    <string name="title_activity_detailed_dark">DetailedDark</string>
+    <string name="tab_text_1">Today</string>
+    <string name="tab_text_2">Weekly</string>
+    <string name="tab_text_3">Photos</string>
+    <string name="search_display">Search Result</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_search_results">Search_results</string>
+    <string name="ip_address">10.0.0.184:8081</string>
+</resources>
