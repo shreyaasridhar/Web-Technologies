@@ -1,0 +1,67 @@
+.card{
+	background-color: #89d0f2;
+}
+.img-siz{
+	width: 40px;
+}
+.table td{
+	border: 0;
+}
+.color-yellow{
+	color: #f8d556;
+}
+.table td.fit, 
+.table th.fit {
+    white-space: nowrap;
+    width: 1%;
+}
+.card{
+	width:65%;
+}
+#seal_vals{
+	height: 100px;
+	width: 100px;
+}
+.cardwidth{
+	width: 400px;
+}
+.degree{
+	vertical-align: 20px;
+}
+.curtab{
+	background: #89d0f2;
+	border-radius: 5px;
+}
+@media screen and (max-width : 700px){
+	.cardwidth{
+		width: 330px;
+	}
+	.fs{
+		font-size: 19px;
+		font-weight: 500px;
+	}
+	#twitterimg{
+		height: 23px;
+		width: 23px;
+	}
+	.card{
+		width:90%;
+	}
+	#seal_vals{
+		height: 90px;
+		width: 90px;
+	}
+}
+@media screen and (min-width: 992px) { 
+	.cardwidth{
+		width:600px;
+	}
+	.fs{
+		font-size: 30px;
+		font-weight: 500px;
+	}
+	#seal_vals{
+		height: 150px;
+		width: 150px;
+	}
+ }

@@ -1,0 +1,9 @@
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+    background-color: #89d0f2;
+ }
+ .table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n) > th,.table-striped > thead {
+    background-color: #6291AF;
+ }
+ .table tr{
+    border: 0;
+ }

@@ -1,0 +1,59 @@
+body{
+	overflow-x: hidden;
+}
+.card{
+	background-color: #518ba6;
+	box-shadow: 5px 10px 18px #888888;
+}
+.form-group.required .control-label:after {
+  content:"*";
+  font-size: 25px;
+  color: rgb(211, 36, 36);
+}
+.control-label{
+	padding: 0;
+}
+.btn{
+	color:black;
+}
+.mak-act{
+	outline: none;
+	background-color: #6291AF;
+	color:white;
+}
+#error_display{
+	background : #fff3cd;
+	color : #b39b56;
+	padding-left : 25%;
+	width: 60%;
+	margin-left: 20%;
+}
+.form-control.is-invalid{
+	background-image: none;
+}
+#form-content-values{
+	margin-left: 10%;
+	}
+.card{
+	width:65%;
+}
+
+@media(max-width:768px){
+	#form-content-values{
+	margin-left: 0;
+	}
+	#checkbox-vals{
+		margin-left: 3px;
+	}
+	#citysize{
+		font-size: small;
+	}
+	.container{
+		width:90%;
+	}
+	#toggle_vals{
+		text-align: center;
+		margin-left: 5%;
+	}
+
+}

@@ -1,0 +1,79 @@
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+	<title>Shreyaa's HW8</title>
+</head>
+<body>
+	<div class="card mx-auto container p-3 mt-md-5 mb-5 rounded border border-dark" >
+		<br>
+		<h2 class="text-white text-center"> Weather Search</h2>
+		<br>
+		<form [formGroup] = "weatherform" (ngSubmit)="onSubmit()">
+			<div id="form-content-values">
+				<div class="form-group required row pl-3 pr-3">
+					<label class="text-white control-label col-md-2"> Street &nbsp;</label>
+					<div class="col-md-7 p-0">
+						<input [class.is-invalid]= "street.invalid && street.touched" formControlName = "Street" class="form-control border border-dark" placeholder="Enter Street Name" type="text" name="street" value="" />
+						<small [class.d-none] = "street.valid || street.untouched" class="text-danger help-block"> Please enter a street.</small>
+					</div>
+				</div>
+				<div class="form-group required row pl-3 pr-3">
+					<label class="text-white control-label col-md-2"> City &nbsp;</label>
+					<div class="col-md-7 d-inline p-0">
+						<input  [class.is-invalid]= "city.invalid && city.touched" [matAutocomplete]="auto" type="text" class="form-control border border-dark" matInput (input)="getInputVal()" placeholder="Enter City Name" formControlName = "City"/>	
+						<small [class.d-none] = "city.valid || city.untouched" class="text-danger"> &nbsp; City is required</small>
+					</div>
+				</div>
+				<mat-autocomplete #auto="matAutocomplete">
+					<mat-option *ngFor="let list_cities of filtered_list_cities | async" [value]="list_cities">
+						{{ list_cities }}
+					</mat-option>
+				</mat-autocomplete>
+		
+				<div class="form-group required row pl-3 pr-3">
+					<label class="text-white control-label col-md-2"> State &nbsp;</label>
+					<div class="col-md-5 p-0">
+						<select [class.is-invalid]= "state.invalid && state.touched" formControlName = "State" class="form-control" id="state">
+							<option [ngValue]="null">Select State</option>
+							<option *ngFor="let s of states_USA" [ngValue]="s">{{s}}</option>
+						</select>
+						<span [class.d-none] = "state.valid || state.untouched" class="text-danger help-block"> 
+							&nbsp; State is required
+						</span>
+					</div>
+				</div>
+				<input type="hidden" formControlName = "lat" >
+				<input type="hidden" formControlName = "lon" >
+				<input type="hidden" formControlName = "state_curloc" >
+				<input type="hidden" formControlName = "city_curloc" >
+			<div class="form-group row pl-3" id="checkbox-vals">
+				<div class="form-check form-inline control-label text-center">
+				<input formControlName = "CurLoc" class="form-check-input text-right" type="checkbox" (click) = "getLocation()" >
+				<label class="form-check-label control-label text-white" for="inlineCheckbox1">Current Location</label>
+				</div>
+			</div>
+			<div class="form-group row">
+			<button [disabled]="!weatherform.valid"  type="submit" class="btn btn-light ml-3" ><i class="material-icons" style="vertical-align: text-bottom;">search</i>Search</button>  &nbsp; &nbsp;
+				<button class="btn btn-light ml-3" id = "clear" (click) = "weatherform.reset({}); submitted=false; favourites_displaying=false; err_disp=false">
+					<i class="material-icons md-18" style="vertical-align: text-bottom;">clear_all</i>Clear</button>
+			</div>
+		</div>
+		</form>
+		<!-- {{formattedMessage}}
+		{{weatherform.status}}
+		{{weatherfom.value | json}} -->
+		<br><br><br>
+	</div>
+
+	<div class="container offset-lg-5" id="toggle_vals"style="margin-bottom: 5%;">
+		<button (click) = "Display_results()" type="button" class="btn m-3 border border-dark" [class.mak-act]="isResults()">Results</button>
+		<button (click) = "Favorites()" type="button" class="btn btn-light m-3 border border-dark" [class.mak-act]="isFavs()">Favorites</button>
+	</div>
+
+	<div *ngIf = "progress" class="progress container">
+			<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;background-color:#56ACB6;"></div>
+	</div>
+	<app-results-tab *ngIf="result_displaying" id="res_display" [Submitstatus]="submitted" [Viewresult]="apidata" [Viewable]="view_var"></app-results-tab> 
+	<div id='error_display' class="container" *ngIf="err_disp">Invalid Address.</div>
+	<app-favorite *ngIf="favourites_displaying" class='container justify-content-center' id="fav_display"></app-favorite>    
+</body>

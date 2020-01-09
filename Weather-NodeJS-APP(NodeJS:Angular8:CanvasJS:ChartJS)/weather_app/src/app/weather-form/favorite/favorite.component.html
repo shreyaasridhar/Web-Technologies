@@ -1,0 +1,23 @@
+<table class="table table-striped container" *ngIf = "!no_data && !display_fav_res">
+    <thead>
+    <tr>
+      <th class="text-center" scope="col">#</th>
+      <th class="text-center" scope="col">Image</th>
+      <th class="text-center" scope="col">City</th>
+      <th class="text-center" scope="col">State</th>
+      <th class="text-center" scope="col">Wish List</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let elem of array_elem; index as i">
+      <th class="text-center" scope="row">{{ i + 1 }}</th>
+      <td class="text-center">
+        <img [src]=elem.image class="mr-2" style="width: 50px; height: 50px;">
+      </td>
+      <td class="text-center"><button (click)="clicked_element(i)" style="color:blue; background: none; border: 0;">{{ elem.city }}</button></td>
+      <td class="text-center">{{ elem.state }}</td>
+      <td class="text-center"><button (click) = "delete_item(i)" style="color:white"><i class="material-icons text-warning">delete</i></button></td>
+    </tr>
+    </tbody>
+</table>
+<app-results-tab *ngIf="display_fav_res" id="res_display" [Submitstatus]="display_fav_res" [Viewresult]="res_api_data" [Viewable]="display_fav_res"></app-results-tab> 

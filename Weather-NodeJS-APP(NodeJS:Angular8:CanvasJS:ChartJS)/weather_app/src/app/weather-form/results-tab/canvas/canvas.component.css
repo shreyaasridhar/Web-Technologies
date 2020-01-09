@@ -1,0 +1,13 @@
+/* #chartContainer{
+	width: 100%; 
+	height: 330px;
+} */
+.modal-header{
+	background-color: #678AA0;
+}
+#index{
+	display: none;
+}
+#modalbody{
+	background-color: #89d0f2;
+}

@@ -1,0 +1,194 @@
+<!-- <div class="container my-container">
+		<div class="row my-row">
+			<div class="col-md-4 col-sm-6 my-col">
+				Row 1 Col 1
+			</div>
+			<div class="col-md-8 col-sm-6 my-col">
+				Row 1 Col 2
+			</div>
+		</div>
+		<div class="row justify-content-between align-items-stretch my-row">
+			<div class="col-4 my-col order-md-12">
+				Row 2 Col 1
+			</div>
+			<div class="col-4 offset-md-2 my-col align-self-start order-md-2">
+				Row 2 Col 2
+			</div>
+		</div>
+	</div> -->
+<div *ngIf = "Viewable && Submitstatus">
+	<div id="tabs" #tabs class="container">
+		<ul class="nav nav-tabs">
+			<li class="nav-item">
+			  <a class="nav-link active" [ngClass]="{ 'active':activeTab==='currently'}" (click)="currently('currently')"
+			     data-toggle="tab">Currently</a>
+			</li>
+
+			<li class="nav-item">
+			  <a class="nav-link" [ngClass]="{ 'active':activeTab==='hourly'}" data-toggle="tab"
+			     (click)="hourly('hourly')">Hourly</a>
+			</li>
+
+			<li class="nav-item">
+			  <a class="nav-link" [ngClass]="{ 'active':activeTab==='weekly'}" data-toggle="tab"
+			     (click)="weekly('weekly')">Weekly</a>
+			</li>
+
+			<li class="nav-item ml-auto m-0">
+
+			  <a class="nav-link border-0 p-0" [ngClass]="{ 'active':activeTab==='twitter'}" href={{urltwitter}} target="_blank">
+			     <img id="twitterimg" height=50  width=50 src="https://csci571.com/hw/hw8/Images/Twitter.png"/>
+			 </a>
+			</li>
+
+			<li class="nav-item">
+			  <a class="nav-link" *ngIf="!isStar" [ngClass]="{ 'active':activeTab==='star'}" (click)="star()"><i class="material-icons">star_border</i></a>
+			  <a class="nav-link" *ngIf="isStar" [ngClass]="{ 'active':activeTab==='star'}" (click)="star()"><i class="material-icons color-yellow">star</i></a>
+			</li>
+
+		</ul>
+		
+		<div class="tab-content">
+			<div class="tab-pane container" id="currently" [ngClass]="{ 'active':activeTab==='currently'}">
+				<!-- <br><br><div class="card container border border-dark justify-content-around" >
+						<h3 id="citysize" class="row ml-md-3 mt-md-4">{{Viewresult.city}}</h3>
+						<div class="row justify-content-around ml-md-3 mb-2">
+						  <div class="col-lg-7 px-0">
+							<h3 id="citysize" class="pb-md-3 card-text font-weight-normal" style="color: #264d51;">{{Viewresult.darksky.timezone}}</h3>
+							<div class="pb-md-3">
+								<h1 id="citysize" class="float-left pr-md-2">{{curtemp(Viewresult.darksky.currently.temperature)}}</h1>
+								<img src="https://cdn3.iconfinder.com/data/icons/virtual-notebook/16/button_shape_oval-512.png" style="border-radius: 50%;height: 20px; width: 20px;" class="float-left mr-md-2">
+								<h1 id="citysize">F</h1>
+							</div>
+							<h4 id="citysize" class="font-weight-normal">{{Viewresult.darksky.currently.summary}}</h4>
+						  </div>
+							<div class="col-lg-4" >
+								<img class="m-0" id="seal_vals" src={{Viewresult.stateseal}}>
+							</div> 
+						</div> -->
+						
+				<div class="row border curtab border-dark cardwidth mx-auto mt-5">
+					<div class="col-6  pr-5 mt-1">
+						<p class="fs">{{Viewresult.city}}</p>
+						<p class="fs">{{Viewresult.darksky.timezone}}</p>
+						<p class="fs">{{curtemp(Viewresult.darksky.currently.temperature)}}<span class="degree"><img src="https://cdn3.iconfinder.com/data/icons/virtual-notebook/16/button_shape_oval-512.png" height="15" width="15"></span><span>F</span></p>
+						<p class="fs">{{Viewresult.darksky.currently.summary}}</p>
+					</div>
+					<span class="col-1 pl-5 mt-5 ml-lg-5" style="padding-left: 70px;"><img src={{Viewresult.stateseal}} id="seal_vals" height="125" width="125"></span>
+
+				
+					<div class="row mx-auto">
+						<div class="col-3"></div>
+						<div class="column">
+
+				<!-- </div> -->
+			    
+					<table class="table table-sm">
+						<tbody>
+						  <tr style="background-image:none">
+							<td class="text-center"><img src = 'https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-16-32.png' class="img-siz" matTooltip = 'Humidity'></td>
+							<td class="text-center"><img src = 'https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-25-32.png' class="img-siz" matTooltip = 'Pressure'/></td>
+							<td class="text-center"><img src = 'https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-27-32.png' class="img-siz" matTooltip = 'WindSpeed'/></td>
+							<td class="text-center"><img src = 'https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-30-32.png' class="img-siz" matTooltip = 'Visibility'/></td>
+							<td class="text-center"><img src = 'https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-28-32.png' class="img-siz" matTooltip = 'CloudCover'/></td>
+							<td class="text-center"><img src = 'https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-24-32.png' class="img-siz" matTooltip = 'Ozone'/></td>
+						  </tr>
+						  <tr>
+							<td class="text-center">{{Viewresult.darksky.currently.humidity}}</td>
+							<td class="text-center">{{Viewresult.darksky.currently.pressure}}</td>
+							<td class="text-center">{{Viewresult.darksky.currently.windSpeed}}</td>
+							<td class="text-center">{{Viewresult.darksky.currently.visibility}}</td>
+							<td class="text-center">{{Viewresult.darksky.currently.cloudCover}}</td>
+							<td class="text-center">{{Viewresult.darksky.currently.ozone}}</td>
+						  </tr>
+						</tbody>
+					</table>
+					</div></div>
+				</div>
+				<br><br>
+			</div>
+			<div class="tab-pane" id="hourly" [ngClass]="{ 'active':activeTab==='hourly'}">
+				<br/><br/>
+				<select [(ngModel)]="display_chart" class="form-control form-control-sm col-md-5">
+						<option *ngFor="let weather_var of weather_vars" [ngValue]="weather_var">{{weather_var}}</option>
+					</select>
+					<br/>
+				<div *ngIf="display_chart == 'Temperature'" id="sec">
+				  <div style="display: block">
+				    <canvas baseChart
+				            [datasets]="TemperatureData"
+				            [labels]="TemperatureLabels"
+				            [options]="TemperatureOptions"
+				            [colors]="barChartColors"
+				            [legend]="TemperatureLegend"
+				            [chartType]="TemperatureType">
+				    </canvas>
+				  </div>
+				</div>
+				<div *ngIf="display_chart == 'Pressure'" id="sec">
+				  <div style="display: block">
+				    <canvas baseChart
+				            [datasets]="PressureData"
+				            [labels]="PressureLabels"
+				            [options]="PressureOptions"
+				            [colors]="barChartColors"
+				            [legend]="PressureLegend"
+				            [chartType]="PressureType">
+				    </canvas>
+				  </div>
+				</div>
+				<div *ngIf="display_chart == 'Humidity'" id="sec">
+				  <div style="display: block">
+				    <canvas baseChart
+				            [datasets]="HumidityData"
+				            [labels]="HumidityLabels"
+				            [options]="HumidityOptions"
+				            [colors]="barChartColors"
+				            [legend]="HumidityLegend"
+				            [chartType]="HumidityType">
+				    </canvas>
+				  </div>
+				</div>
+				<div *ngIf="display_chart == 'Ozone'" id="sec">
+				  <div style="display: block">
+				    <canvas baseChart
+				            [datasets]="OzoneData"
+				            [labels]="OzoneLabels"
+				            [options]="OzoneOptions"
+				            [colors]="barChartColors"
+				            [legend]="OzoneLegend"
+				            [chartType]="OzoneType">
+				    </canvas>
+				  </div>
+				</div>
+				<div *ngIf="display_chart == 'Visibility'" id="sec">
+				  <div style="display: block">
+				    <canvas baseChart
+				            [datasets]="VisibilityData"
+				            [labels]="VisibilityLabels"
+				            [options]="VisibilityOptions"
+				            [colors]="barChartColors"
+				            [legend]="VisibilityLegend"
+				            [chartType]="VisibilityType">
+				    </canvas>
+				  </div>
+				</div>
+				<div *ngIf="display_chart == 'Wind Speed'" id="sec">
+				  <div style="display: block">
+				    <canvas baseChart
+				            [datasets]="WindspeedData"
+				            [labels]="WindspeedLabels"
+				            [options]="WindspeedOptions"
+				            [colors]="barChartColors"
+				            [legend]="WindspeedLegend"
+				            [chartType]="WindspeedType">
+				    </canvas>
+				  </div>
+				</div>
+			</div>
+			<div class="tab-pane" id="weekly" [ngClass]="{ 'active':activeTab==='weekly'}" *ngIf="week_active">
+				<app-canvas [weeklydata]="apiweekly" ></app-canvas>
+			</div>
+		</div>
+</div>
+	

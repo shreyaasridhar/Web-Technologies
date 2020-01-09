@@ -1,0 +1,47 @@
+<div class="container" >
+  <br><br><br>
+    <div id="chartContainer" ></div>
+  <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#exampleModal" (click)="SendAPIrequest()"></button>
+
+  <button class="d-none" type="hidden" id="lat" value="{{this.weeklydata.darksky.latitude}}"></button>
+  <button class="d-none" type="hidden" id="lon" value="{{this.weeklydata.darksky.longitude}}"></button>
+  <button class="d-none" type="hidden" id="index"></button>
+  
+  <!-- Modal-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{date}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="modalbody">
+          <div class="row">
+            <div class="col" id="left-top">
+              <h3 class="ml-md-3">{{weeklydata.city}}</h3>
+              <div class="ml-md-3">
+                <h1 class="float-left" id="tempdiv"></h1>
+                <img src="https://cdn3.iconfinder.com/data/icons/virtual-notebook/16/button_shape_oval-512.png" style="border-radius: 50%;height: 20px; width: 20px;" class="float-left">
+                <h1>F</h1>
+              </div>
+              <h5 class="ml-md-3 font-weight-normal">{{daily.currently.summary}}</h5>
+            </div>
+            <div class="col float-right text-center" id="right-top">
+               <img src="{{detailed_icon_picker(daily.currently.icon)}}" height=100 width=100 />
+            </div>
+          </div>
+          <hr w-35>
+          <div class="float-right mr-5">
+            <div> Precipitation : {{pi}}</div>
+            <div> Chance of Rain : {{pp}} %</div>
+            <div> Wind Speed : {{ws}} mph</div>
+            <div> Humidity : {{hum}} %</div>
+            <div> Visibility : {{visi}} miles</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+</div>
